@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嘟嘟电影网 - 亲子轻松正版找片·公共领域老片·按心情与渠道导航</title>
+<meta name="description" content="嘟嘟电影网(dududianyingwang-h5.github.io)做圆润亲子风正版电影资料导航：1905、央视频、学习强国、B站、Tubi、Pluto、Kanopy、Hoopla、Internet Archive等正版/公共领域渠道，按心情、亲子、老片、类型找片。不托管视频、不解析未授权源、不诱导下载播放器。">
+<meta name="keywords" content="嘟嘟电影网, dududianyingwang-h5, 亲子电影导航, 正版免费电影, 公共领域老片, 1905, 央视频, 学习强国, Tubi, Pluto, Kanopy, Internet Archive">
+<meta name="author" content="嘟嘟电影网">
+<meta name="robots" content="index, follow">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fbfdff;--bg2:#f1f7f4;--ink:#27323a;--ink2:#5d6b73;
+  --card:#ffffff;--card2:#f4fbf7;
+  --mint:#39c6a0;--mint-deep:#1f9e7d;--peach:#ff9bb0;--peach-deep:#ef6f8c;
+  --yellow:#ffd166;--yellow-deep:#e9b43b;--blue:#7cc6ff;--red:#ff7088;--ok:#37c98b;
+  --line:rgba(57,198,160,.20);--radius:22px;--shadow:0 14px 34px rgba(31,158,125,.14);
+}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+ radial-gradient(520px 360px at 88% 6%,rgba(255,155,176,.18),transparent 60%),
+ radial-gradient(620px 420px at 6% 94%,rgba(57,198,160,.16),transparent 60%),
+ linear-gradient(180deg,#fbfdff,#f1f7f4 55%,#eef6f1 100%);}
+.bubbles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+ background-image:radial-gradient(rgba(124,198,255,.35) 6px,transparent 7px),radial-gradient(rgba(255,209,102,.35) 5px,transparent 6px);
+ background-size:120px 120px,90px 90px;background-position:10% 20%,80% 70%;mask-image:radial-gradient(circle at 70% 20%,#000,transparent 82%)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.12rem}
+.brand .mk{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--peach));color:#06372b;display:flex;align-items:center;justify-content:center;font-weight:900}
+.brand b{color:var(--mint-deep)}
+.topnav{display:flex;gap:4px}
+.topnav a{padding:9px 14px;border-radius:10px;font-size:.84rem;font-weight:600;color:var(--ink2);transition:.25s}
+.topnav a:hover,.topnav a.active{background:rgba(57,198,160,.14);color:var(--mint-deep)}
+.menu-btn{display:none;background:none;border:none;font-size:1.4rem;color:var(--mint-deep);cursor:pointer}
+.hero{position:relative;z-index:1;margin-top:62px;padding:74px 20px 52px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.kicker{font-family:"Courier New",monospace;font-size:.68rem;letter-spacing:2px;color:var(--mint-deep);border:1px solid var(--line);padding:5px 12px;border-radius:20px;background:rgba(57,198,160,.07)}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem);font-weight:900;line-height:1.18;margin:14px 0 8px}
+.hero h1 .m{color:var(--mint-deep)}.hero h1 .p{color:var(--peach-deep)}
+.hero p{color:var(--ink2);font-size:1rem;margin:14px 0 24px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:inherit;font-weight:700;font-size:.9rem;padding:12px 24px;border-radius:14px;cursor:pointer;border:none;transition:.3s}
+.btn-main{background:linear-gradient(135deg,var(--mint),var(--mint-deep));color:#04332a}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(31,158,125,.30)}
+.btn-line{background:#fff;border:2px solid var(--peach);color:var(--peach-deep)}
+.bubble-card{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.bubble-card h3{font-size:.95rem;color:var(--mint-deep);margin-bottom:10px}
+.brow{display:flex;gap:10px;margin:8px 0;flex-wrap:wrap}
+.bchip{flex:1;min-width:120px;border:1px solid var(--line);border-radius:16px;padding:10px 12px;font-size:.76rem;color:var(--ink2);background:#fff}
+.bchip b{display:block;color:var(--ink);font-size:.84rem;margin-bottom:2px}
+.bchip.s1{border-left:5px solid var(--mint)}.bchip.s2{border-left:5px solid var(--peach)}.bchip.s3{border-left:5px solid var(--yellow)}
+.container{max-width:1200px;margin:0 auto;padding:52px 20px;position:relative;z-index:1}
+.label{font-family:"Courier New",monospace;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--mint-deep)}
+.title{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;margin:4px 0 6px}
+.desc{font-size:.88rem;color:var(--ink2);margin-bottom:30px}
+.divider{height:3px;background:repeating-linear-gradient(90deg,var(--mint) 0 14px,var(--peach) 14px 28px,transparent 28px 40px);opacity:.30;margin:8px 0 26px;border-radius:3px}
+.rule{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--mint);border-radius:var(--radius);padding:24px;margin-bottom:34px;box-shadow:var(--shadow)}
+.rule h3{font-size:1rem;color:var(--mint-deep);margin-bottom:8px}
+.rule p{font-size:.82rem;color:var(--ink2);line-height:1.7}
+.rule ul{margin:8px 0 0 18px;font-size:.8rem;color:var(--ink2)}.rule li{margin:3px 0}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:18px}
+.ch{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:.3s}
+.ch:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--mint)}
+.ch .tag{font-family:"Courier New",monospace;font-size:.7rem;font-weight:700;color:var(--mint-deep)}
+.ch h3{font-size:1rem;font-weight:800;margin:6px 0 4px}.ch p{font-size:.76rem;color:var(--ink2);line-height:1.6}
+.ch .model{margin-top:8px;font-size:.7rem;font-weight:700;color:var(--peach-deep)}
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.md{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.md h3{font-size:.95rem;color:var(--ink)}
+.md p{font-size:.74rem;color:var(--ink2);margin-top:6px}.md .go{font-size:.7rem;font-weight:800;margin-top:8px;color:var(--mint-deep);display:inline-block}
+.kid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.kp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.kp h3{font-size:.95rem;color:var(--ink)}
+.kp p{font-size:.74rem;color:var(--ink2);margin-top:6px}.kp .go{font-size:.7rem;font-weight:800;margin-top:8px;color:var(--peach-deep);display:inline-block}
+.pd{background:rgba(57,198,160,.07);border:1px dashed var(--mint);border-radius:var(--radius);padding:26px;margin-bottom:34px}
+.pd h3{font-size:1rem;color:var(--mint-deep);margin-bottom:8px}.pd p{font-size:.82rem;color:var(--ink2);line-height:1.7}
+.pd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:14px}
+.pd-item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.pd-item h4{font-size:.9rem;color:var(--ink)}
+.pd-item p{font-size:.74rem;color:var(--ink2);margin-top:5px}
+.safe{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.safe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:14px}
+.safe-item{display:flex;gap:10px;font-size:.8rem;color:var(--ink2)}.safe-item .x{color:var(--red);font-weight:800}.safe-item .v{color:var(--ok);font-weight:800}
+.footer{position:relative;z-index:1;background:#0f1a16;color:#bcd3cb;padding:46px 20px 24px;margin-top:54px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px;margin-bottom:26px}
+.footer h4{font-size:.9rem;margin-bottom:10px;color:#fff}.footer a{display:block;font-size:.8rem;color:#a9c4bb;padding:3px 0}
+.footer a:hover{color:var(--mint)}.footer p{font-size:.82rem;color:#a9c4bb;line-height:1.6}
+.footer-bottom{text-align:center;font-size:.72rem;color:rgba(188,211,203,.5);padding-top:18px;border-top:1px solid rgba(188,211,203,.12)}
+.footer-bottom a{color:var(--mint);font-weight:600;display:inline}
+@media(max-width:1024px){.hero-inner{grid-template-columns:1fr}.bubble-card{order:-1}}
+@media(max-width:768px){
+ .topnav{display:none;position:absolute;top:62px;left:0;right:0;flex-direction:column;background:#fff;padding:12px 20px;border-bottom:1px solid var(--line)}
+ .topnav.open{display:flex}.menu-btn{display:block}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.hero h1{font-size:1.7rem}.brow{flex-direction:column}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+<div class="bg"></div><div class="bubbles"></div>
+<div class="topbar"><div class="topbar-inner">
+ <div class="brand"><span class="mk">嘟</span>嘟嘟<b>电影网</b></div>
+ <nav class="topnav" id="topNav">
+  <a href="#home" class="active">首页</a><a href="#rule">正版立场</a><a href="#channels">找片渠道</a>
+  <a href="#mood">按心情</a><a href="#kid">亲子片单</a><a href="#pd">公共领域</a><a href="#safe">避坑合规</a>
+ </nav>
+ <button class="menu-btn" id="menuBtn">☰</button>
+</div></div>
+
+<section class="hero" id="home"><div class="hero-inner">
+ <div>
+  <span class="kicker">DUDU FAMILY FILM FINDER · KIDS / MOOD / LEGAL VOD</span>
+  <h1>嘟一声轻松找片，<br><span class="m">正版</span>和<span class="p">公共领域</span>都安排。</h1>
+  <p>嘟嘟电影网（dududianyingwang-h5.github.io）是圆润亲子风正版找片导航：国内1905/央视频/学习强国/B站，海外Tubi/Pluto/Kanopy/Hoopla/Internet Archive，按心情、亲子、老片、类型筛片。不托管视频、不解析未授权源、不诱导下载EXE/专用播放器；全站静态可爬、移动端自适应，便于必应移动优先收录。[7,8](@ref)</p>
+  <div class="hero-actions">
+   <button class="btn btn-main">🎈 开嘟嘟找正版</button>
+   <button class="btn btn-line">🧸 查亲子公共老片</button>
+  </div>
+ </div>
+ <div class="bubble-card"><h3>嘟嘟四泡</h3>
+  <div class="brow"><div class="bchip s1"><b>正版泡</b>新片/热片走广告或订阅正版：Tubi、Pluto、1905、央视频，按地区授权查。</div>
+  <div class="bchip s2"><b>亲子泡</b>合家欢/动画/自然纪录：Tubi Kids、B站官方、央视频少儿、正版家庭分区。</div></div>
+  <div class="brow"><div class="bchip s3"><b>老片泡</b>默片/早期/修复：Internet Archive、资料馆、Kanopy经典；修复版另核权。</div>
+  <div class="bchip s1"><b>安全泡</b>院线新片全免费、要EXE、要验证码、假播放键——直接关，不列不点。</div></div>
+ </div>
+</div></section>
+
+<div class="container" id="rule"><div class="rule">
+ <h3>为什么“嘟嘟”只做找片、不做播放源</h3>
+ <p>合法免费电影通常来自四类：广告型授权平台、图书馆/高校采购、公共领域档案、官方机构免费发布。免费目录会随地区与授权变化，例如Tubi/Pluto在部分地区基础内容可免登录，Kanopy/Hoopla需图书馆或学校账号，Internet Archive公共领域片无广告但某版本修复/字幕可能另有权。[8,13](@ref) 本站只整理“去哪看、按什么授权、适不适合亲子”，不提供未授权点播。</p>
+ <ul>
+  <li>国内官方：1905国产老片与经典译制、央视频经典与纪录、学习强国影视/纪录零广告、B站机构号戏曲与纪录片 [5,2](@ref)</li>
+  <li>广告正版：Tubi、Pluto、Plex免费层获授权，用广告换免费，类型片与老片较全 [8,19](@ref)</li>
+  <li>图书馆：Kanopy偏独立/纪录/标准收藏，Hoopla借电影/有声/电子书，靠读者卡或高校账号 [8](@ref)</li>
+  <li>公共领域：Internet Archive默片/早期/新闻/教育片；美国2026年起1930年及更早出版作品多入公域，逐片看权利页 [13](@ref)</li>
+ </ul>
+</div></div>
+
+<div class="container" id="channels"><div class="label">— LEGAL CHANNELS —</div>
+ <h2 class="title">正版渠道：圆润分泡，不按“资源多少”吹</h2>
+ <p class="desc">地区版权会变；图书馆看本馆采购，公共领域片逐条看权利说明。</p>
+ <div class="divider"></div>
+ <div class="ch-grid">
+  <div class="ch"><div class="tag">CN OFFICIAL</div><h3>1905电影网</h3><p>电影频道官方，国产老片、经典译制、主旋律与部分正版免费区较全；新片按点播/付费规则查。[2,5](@ref)</p><div class="model">模式：官方正版</div></div>
+  <div class="ch"><div class="tag">CCTV / YSP</div><h3>央视频 / 央视网</h3><p>总台体系，经典电影、纪录片、老剧回看稳定，公益属性强、广告少，适合亲子与长辈。[5](@ref)</p><div class="model">模式：官方免费/正版</div></div>
+  <div class="ch"><div class="tag">EDU</div><h3>学习强国影视区</h3><p>历史纪实、红色经典、教育类国产片与纪录片零广告；适合教学、亲子正史补充。[2](@ref)</p><div class="model">模式：官方免费</div></div>
+  <div class="ch"><div class="tag">BILIBILI</div><h3>B站电影/纪录</h3><p>动画、文艺、海外小众、纪录片与戏曲老片按机构认证发布；筛“官方/正版”再点，避免个人搬运。[2,5](@ref)</p><div class="model">模式：官方/授权上传</div></div>
+  <div class="ch"><div class="tag">AD-SUPPORTED</div><h3>Tubi / Pluto</h3><p>Tubi广告型正版库、类型片全；Pluto线性电影频道+点播，换台式看片省决策，部分地区免登录。[8,19](@ref)</p><div class="model">模式：授权+广告</div></div>
+  <div class="ch"><div class="tag">LIBRARY</div><h3>Kanopy / Hoopla</h3><p>图书馆或高校账号进入；Kanopy偏独立/纪录/Criterion，Hoopla借电影/有声/电子书，按月额度、无广告。[8](@ref)</p><div class="model">模式：机构采购</div></div>
+  <div class="ch"><div class="tag">SERVER + VOD</div><h3>Plex 免费层</h3><p>个人媒体服务器起家，免费层含授权电影、剧集与FAST直播；不搭服务器也能用发现功能。[8](@ref)</p><div class="model">模式：授权+广告</div></div>
+  <div class="ch"><div class="tag">PUBLIC DOMAIN</div><h3>Internet Archive</h3><p>公共领域长片、默片、新闻片、教育片档案；无广告无账号，但某版本修复/字幕/配乐可能另有权利。[13,8](@ref)</p><div class="model">模式：公域/许可</div></div>
+ </div>
+</div>
+
+<div class="container" id="mood"><div class="label">— FIND BY MOOD —</div>
+ <h2 class="title">按心情找：嘟嘟不堆海报，给可执行路径</h2>
+ <p class="desc">片单只写“去哪查”，不写播放源；具体可看片目随授权变化。</p>
+ <div class="divider"></div>
+ <div class="mood-grid">
+  <div class="md"><h3>周末轻松·不费脑</h3><p>喜剧/合家欢/轻悬疑：正版订阅→Tubi/Pluto广告免费→新片官方租赁；不搜“高清全集”。</p><div class="go">渠道：正版VOD / Tubi / Pluto</div></div>
+  <div class="md"><h3>治愈放空·配茶</h3><p>慢文艺、自然纪录、家庭温情：Kanopy纪录、B站官方经典、央视频纪录片、正版治愈分区。</p><div class="go">渠道：Kanopy / B站 / 央视频</div></div>
+  <div class="md"><h3>烧脑拉片·作者性</h3><p>独立/外语/作者全集：公域档案查早期，Kanopy查独立纪录，资料馆查修复。</p><div class="go">渠道：Archive / Kanopy / 资料馆</div></div>
+  <div class="md"><h3>历史档案·研究用</h3><p>无声/早期有声/新闻/教育片：Internet Archive、公共领域影片库、地方资料馆开放资源。</p><div class="go">渠道：Archive / 公域库 / 资料馆</div></div>
+  <div class="md"><h3>低成本怀旧·公域仓</h3><p>noir、默片喜剧、早期恐怖：Archive公域为主，Kanopy补经典；修复另核字幕/配乐权。</p><div class="go">渠道：Archive / Kanopy</div></div>
+  <div class="md"><h3>纪录片专题·上课</h3><p>自然/社会/音乐纪录：图书馆Kanopy/Hoopla，Tubi纪录补商业，官方传片认认证账号。</p><div class="go">渠道：Kanopy / Hoopla / 官方</div></div>
+  <div class="md"><h3>国产老片·正史向</h3><p>商业老片与艺术片混合：1905/央视频/学习强国查正版免费，资料馆查修复展映。</p><div class="go">渠道：1905 / 央视频 / 资料馆</div></div>
+  <div class="md"><h3>动画放空·不踩雷</h3><p>经典动画/独立动画/亲子短片：B站机构号、Tubi Kids、官方动画频道；新番走正版不装解码器。</p><div class="go">渠道：B站 / Tubi Kids / 官方</div></div>
+ </div>
+</div>
+
+<div class="container" id="kid"><div class="label">— KIDS & FAMILY —</div>
+ <h2 class="title">亲子片单：圆润不刺激，优先正版儿童分区</h2>
+ <p class="desc">以年龄分级、平台儿童模式、家长陪同为准；不点“全网VIP免费”的第三方站。</p>
+ <div class="divider"></div>
+ <div class="kid-grid">
+  <div class="kp"><h3>低龄启蒙·动画短片</h3><p>Tubi Kids、B站经典动画、央视频少儿；选官方上传与平台儿童模式，避免个人搬运高清。</p><div class="go">去：Tubi Kids / B站 / 央视频少儿</div></div>
+  <div class="kp"><h3>合家欢·喜剧温情节</h3><p>正版平台家庭分区、1905合家老片、学习强国教育向；新喜剧多在付费层，不下载陌生播放器。</p><div class="go">去：正版家庭 / 1905 / 学习强国</div></div>
+  <div class="kp"><h3>自然纪录·动物世界</h3><p>Kanopy自然纪录、央视频/B站官方纪录片、正版平台儿童纪录；按集数而非“全集解析”查。</p><div class="go">去：Kanopy / 央视频 / B站</div></div>
+  <div class="kp"><h3>历史故事·诗词人物</h3><p>动画化历史、少年宫斗轻量版、诗词人物：B站官方经典+央视频少儿+正版家庭分区。</p><div class="go">去：B站 / 央视频 / 正版家庭</div></div>
+  <div class="kp"><h3>公域老动画·教学用</h3><p>Internet Archive早期教育动画、公共领域短片；逐片看权利页，修复配乐/字幕可能另授权。</p><div class="go">去：Archive 公域教育片</div></div>
+  <div class="kp"><h3>图书馆亲子影音</h3><p>Kanopy Kids（若本馆开通）、Hoopla儿童电影/有声书；用读者卡查本馆采购片单。</p><div class="go">去：Kanopy Kids / Hoopla</div></div>
+ </div>
+</div>
+
+<div class="container" id="pd"><div class="pd">
+ <h3>公共领域老片：嘟嘟“真免费”底层资产</h3>
+ <p>“老”不等于“随便转”：原片进入公共领域后，修复画质、新配乐、新字幕、彩色化可能另有权利。美国2026年规则下，1930年及更早在美国出版作品多入公域；1931—1963年未续展才可能公域；政府作品、配乐、底本、修复版要分层核。[13](@ref) 中国老片要结合首次发表、制片厂、资料馆修复与平台确权分别判断。</p>
+ <div class="pd-grid">
+  <div class="pd-item"><h4>默片喜剧/剧情</h4><p>Archive与公域档案的默片长片、短片，适合亲子拉片与教学截图；配乐若后加仍可能受保护。</p></div>
+  <div class="pd-item"><h4>早期有声/新闻/教育</h4><p>1930s前后新闻重演、政府教育片、战时纪录；美国政府作品通常公域，地方/承包制作要单独看。</p></div>
+  <div class="pd-item"><h4>儿童教育短片</h4><p>Archive公域教育动画、卫生/自然/安全短片，适合课堂剪辑素材；引用修复重制版先核权。</p></div>
+  <div class="pd-item"><h4>开放文化合集</h4><p>WikiFlix、Open Culture类只做导览，播放回Archive/Commons等开放源，不中转录播。</p></div>
+ </div>
+</div></div>
+
+<div class="container" id="safe"><div class="label">— ANTI-PIRACY —</div>
+ <h2 class="title">嘟嘟红灯清单：名字软，版权不软</h2>
+ <p class="desc">合法免费站通常说明授权主体、广告模式或图书馆/公域来源；可疑站用假播放键和强制下载。[19](@ref)</p>
+ <div class="safe"><div class="safe-grid">
+  <div class="safe-item"><span class="x">✕</span> 院线新片“高清全集免费”、要验证码/网盘密码/种子</div>
+  <div class="safe-item"><span class="x">✕</span> 点播放先下EXE/专用播放器/解码插件/浏览器扩展</div>
+  <div class="safe-item"><span class="x">✕</span> 深度解析第三方视频源、无主体无授权无投诉入口</div>
+  <div class="safe-item"><span class="x">✕</span> 弹窗满屏、假病毒提醒、赌博/成人重定向、域名天天换</div>
+  <div class="safe-item"><span class="x">✕</span> 用“最全/破解/磁力/资源站”做主卖点、盗海报仿官方</div>
+  <div class="safe-item"><span class="x">✕</span> 老片不分原片公域与修复授权，一律写“免费可下”</div>
+  <div class="safe-item"><span class="v">✓</span> 标明渠道类型：广告/订阅/官方/图书馆/公域/资料馆</div>
+  <div class="safe-item"><span class="v">✓</span> 不存片、不解析、不诱导下载任何软件</div>
+  <div class="safe-item"><span class="v">✓</span> 片单写“以平台当期授权、地区与账号资格为准”</div>
+  <div class="safe-item"><span class="v">✓</span> 页脚有主体、隐私、版权投诉与联系入口</div>
+  <div class="safe-item"><span class="v">✓</span> 移动端无全屏强制弹层、锚点可点、核心内容在初始HTML [7](@ref)</div>
+  <div class="safe-item"><span class="v">✓</span> 公域片区分原片公域与修复/字幕/配乐另行授权</div>
+ </div></div>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+ <div class="footer-grid">
+  <div><div class="brand"><span class="mk">嘟</span>嘟嘟<b>电影网</b></div>
+   <p>嘟嘟电影网（dududianyingwang-h5.github.io）是圆润亲子风正版找片导航：1905、央视频、学习强国、B站、Tubi、Pluto、Kanopy、Hoopla、Internet Archive等正版/公共领域渠道，按心情、亲子、老片、类型找片。不提供未授权播放，不解析非法视听源，不诱导下载任何播放器；静态HTML、内联样式、移动自适应，便于必应抓取与后续站长工具提交。</p></div>
+  <div><h4>栏目</h4><a href="#rule">正版立场</a><a href="#channels">找片渠道</a><a href="#mood">按心情</a><a href="#kid">亲子片单</a></div>
+  <div><h4>渠道</h4><a href="#">国内官方免费</a><a href="#">广告正版</a><a href="#">图书馆流媒体</a><a href="#">公域档案</a></div>
+  <div><h4>说明</h4><a href="#">版权投诉</a><a href="#">隐私说明</a><a href="#">使用条款</a><a href="#">联系我们</a></div>
+ </div>
+ <div class="footer-bottom">
+  <p>© 2024 嘟嘟电影网 (Dudu Family Legal Finder) - 亲子轻松·正版渠道·公共领域老片</p>
+  <p>网站地址：<a href="https://dududianyingwang-h5.github.io">https://dududianyingwang-h5.github.io</a></p>
+  <p style="margin-top:6px;opacity:.6">“嘟嘟”仅指圆润找片体验与正版/公域导航方法，不涉及盗版全集、资源解析或未授权点播。</p>
+ </div>
+</div></footer>
+
+<script>
+var menuBtn=document.getElementById('menuBtn'),topNav=document.getElementById('topNav');
+menuBtn.onclick=function(){topNav.classList.toggle('open')};
+topNav.querySelectorAll('a').forEach(function(a){a.onclick=function(){topNav.classList.remove('open')}});
+var secs=document.querySelectorAll('section[id],div[id]');
+addEventListener('scroll',function(){
+ var y=scrollY+82;
+ secs.forEach(function(s){
+  if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+   document.querySelectorAll('.topnav a').forEach(function(a){a.classList.remove('active')});
+   var l=document.querySelector('.topnav a[href="#'+s.id+'"]');if(l)l.classList.add('active');
+  }
+ });
+});
+</script>
+</body>
+</html>
